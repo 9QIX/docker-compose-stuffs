@@ -1,0 +1,11 @@
+services:
+  subsai-webui:
+    image: absadiki/subsai:main
+    ports:
+      - "8501:8501"
+    volumes:
+      - /mnt/e2119e1b-0abf-48bb-b4de-d434ce1d4b33/Converted MP3:/media_files
+    environment:
+      - DEVICE=cpu
+    restart: always
+
