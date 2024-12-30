@@ -1,23 +1,12 @@
-version: "3.8"
-
 services:
   nushell:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        TARGETARCH: ${TARGETARCH}
-        BUILD_REF: ${BUILD_REF}
-        BUILD_DATE: ${BUILD_DATE}
-        RELEASE_QUERY_API: "https://api.github.com/repos/nushell/nushell/releases/latest"
-    image: nushell:latest
-    environment:
-      - TARGETARCH=${TARGETARCH}
+    image: ghcr.io/nushell/nushell:latest-alpine
+    stdin_open: true
+    tty: true
     volumes:
-      - nushell_config:/home/nushell/.config/nushell
-    working_dir: /home/nushell
+      - ./scripts:/work
+    working_dir: /work
     entrypoint: ["nu"]
-    user: nushell
 
 volumes:
   nushell_config:
